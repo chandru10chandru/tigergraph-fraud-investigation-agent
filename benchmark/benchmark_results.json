@@ -1,0 +1,237 @@
+{
+  "total_cases_evaluated": 20,
+  "accuracy": 100.0,
+  "precision": 100.0,
+  "recall": 100.0,
+  "f1_score": 100.0,
+  "policy_compliance_rate": 100.0,
+  "average_latency_ms": 1.34,
+  "confusion_matrix": {
+    "TP": 20,
+    "FP": 0,
+    "TN": 0,
+    "FN": 0
+  },
+  "detailed_case_results": [
+    {
+      "case_id": "HHG-001",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.84,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 1.89
+    },
+    {
+      "case_id": "HHG-002",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.79,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.83
+    },
+    {
+      "case_id": "HHG-003",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.94
+    },
+    {
+      "case_id": "HHG-004",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.78
+    },
+    {
+      "case_id": "HHG-005",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.88,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.74
+    },
+    {
+      "case_id": "HHG-006",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 1.13
+    },
+    {
+      "case_id": "HHG-007",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.98,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 1.38
+    },
+    {
+      "case_id": "HHG-008",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 1.23
+    },
+    {
+      "case_id": "HHG-009",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.71
+    },
+    {
+      "case_id": "HHG-010",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.93,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.88
+    },
+    {
+      "case_id": "HHG-011",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 5.33
+    },
+    {
+      "case_id": "HHG-012",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.91,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.93
+    },
+    {
+      "case_id": "HHG-013",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.89,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 2.49
+    },
+    {
+      "case_id": "HHG-014",
+      "type": "ANALYST_REQUEST",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.8,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.77
+    },
+    {
+      "case_id": "HHG-015",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.87,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 4,
+      "latency_ms": 1.81
+    },
+    {
+      "case_id": "HHG-016",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 3,
+      "latency_ms": 0.84
+    },
+    {
+      "case_id": "HHG-017",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.91,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.75
+    },
+    {
+      "case_id": "HHG-018",
+      "type": "CUSTOMER_REPORT",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.85,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 1.69
+    },
+    {
+      "case_id": "HHG-019",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.94,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.8
+    },
+    {
+      "case_id": "HHG-020",
+      "type": "RISK_SCORE",
+      "actual_fraud": true,
+      "predicted_fraud": true,
+      "risk_score": 0.86,
+      "confidence_score": 0.9,
+      "evidence_iterations": 0,
+      "actions_taken_count": 5,
+      "latency_ms": 0.93
+    }
+  ]
+}

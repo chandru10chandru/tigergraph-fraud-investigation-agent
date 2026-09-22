@@ -1,0 +1,17 @@
+CREATE QUERY detect_fraud_ring(VERTEX<User> input_user) FOR GRAPH FraudInvestigation {
+    SetAccum<VERTEX<User>> @connected_users;
+
+    Start = {input_user};
+    
+    Tx = SELECT t FROM Start:s -(PERFORMED_TRANSACTION:e)-> Transaction:t;
+    
+    Devices = SELECT d FROM Tx:t -(USED_DEVICE:e)-> Device:d;
+    IPs = SELECT i FROM Tx:t -(USED_IP:e)-> IPAddress:i;
+    
+    OtherTx = SELECT t2 FROM (Devices:d <-(USED_DEVICE:e)- Transaction:t2 | IPs:i <-(USED_IP:e)- Transaction:t2);
+    
+    SharedUsers = SELECT u2 FROM OtherTx:t2 <-(PERFORMED_TRANSACTION:e)- User:u2
+                  WHERE u2 != input_user;
+                  
+    PRINT SharedUsers[SharedUsers.id, SharedUsers.name, SharedUsers.risk_score];
+}

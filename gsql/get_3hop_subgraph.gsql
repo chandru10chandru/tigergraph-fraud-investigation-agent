@@ -1,0 +1,18 @@
+CREATE QUERY get_3hop_subgraph(VERTEX<User> input_user) FOR GRAPH FraudInvestigation {
+    SetAccum<VERTEX> @@vertices;
+    SetAccum<EDGE> @@edges;
+
+    Start = {input_user};
+    @@vertices += input_user;
+    
+    Hop1 = SELECT t FROM Start:s -(:e)-> :t ACCUM @@edges += e;
+    @@vertices += Hop1;
+
+    Hop2 = SELECT t FROM Hop1:s -(:e)-> :t ACCUM @@edges += e;
+    @@vertices += Hop2;
+
+    Hop3 = SELECT t FROM Hop2:s -(:e)-> :t ACCUM @@edges += e;
+    @@vertices += Hop3;
+
+    PRINT @@vertices, @@edges;
+}
