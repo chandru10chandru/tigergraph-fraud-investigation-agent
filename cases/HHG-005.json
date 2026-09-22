@@ -1,0 +1,131 @@
+{
+  "case_id": "HHG-005",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.45,
+    "pattern": "undocumented",
+    "pattern_description": "Single elevated model risk score (0.54) on transaction #3523199 without prior historical abuse.",
+    "affected_txn_ids": [
+      "3523199"
+    ],
+    "first_suspicious_txn_id": "3523199",
+    "connected_card_ids": [
+      "C02923-K1"
+    ],
+    "connected_device_profiles": [
+      "Windows | Windows 10 | chrome 62.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "Windows | Windows 7 | firefox 57.0",
+      "MacOS | Mac OS X 10_12_6 | safari generic",
+      "MacOS | Mac OS X 10_13_2 | safari generic",
+      "iOS Device | iOS 11.0.3 | mobile safari 11.0",
+      "rv:57.0 | Mac OS X 10.9 | firefox 57.0",
+      "MacOS | Mac OS X 10_10_5 | safari generic",
+      "Windows | Windows 10 | firefox 57.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "Windows | Windows 7 | chrome 63.0",
+      "MacOS | Mac OS X 10_12_6 | chrome 63.0",
+      "Windows | Windows 10 | edge 15.0",
+      "Android | chrome 63.0",
+      "iOS Device | iOS 11.0.3 | mobile safari generic",
+      "Windows | Windows 10 | chrome 64.0",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "Windows | Windows 7 | chrome 64.0",
+      "iOS Device | iOS 9.3.5 | mobile safari 9.0"
+    ],
+    "exposure_usd": 100.07,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3523199 of $100.07 triggered alert under type 'RISK_SCORE' with model score 0.54",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3523199)",
+        "entity_ids": [
+          "3523199",
+          "C02923",
+          "C02923-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: Windows | Windows 10 | chrome 62.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3523199)",
+        "entity_ids": [
+          "3523199"
+        ]
+      },
+      {
+        "claim": "Step-up two-factor SMS passcode dispatched; awaiting customer completion.",
+        "source": "analyst",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C02923"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 3 prior investigation records for account/card (CC-2400, CC-2717, CC-2857)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-2400",
+          "CC-2717",
+          "CC-2857"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2400",
+      "CC-2717",
+      "CC-2857"
+    ],
+    "summary": "Investigation of case HHG-005 remains open pending step-up authentication response. Transaction #3523199 ($100.07) exhibits borderline risk metrics without confirmed corroborating compromise signals. Card maintained under monitoring under policy rule R1.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-005"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 2,
+      "assumed_response": "Step-up two-factor SMS passcode dispatched; awaiting customer completion."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: Borderline risk score; step-up verification required"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: Monitor card pending customer authentication"
+      }
+    ],
+    "final": [
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: Awaiting 2FA resolution"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: Card maintained under 72h observation"
+      }
+    ],
+    "what_changed": "Step-up authentication requested; card placed under monitoring pending reply."
+  },
+  "sar": {
+    "file": false,
+    "reason": "Uncertain single-signal alert pending step-up authentication response",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Investigation paused pending step-up authentication response under policy R1.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

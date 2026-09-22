@@ -1,0 +1,103 @@
+{
+  "case_id": "HHG-020",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [
+      "C12265-K2"
+    ],
+    "connected_device_profiles": [
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "Linux | chrome 63.0",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "Windows | Windows 7 | chrome 63.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop"
+    ],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3509359 of $125.08 triggered alert under type 'RISK_SCORE' with model score 0.52",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3509359)",
+        "entity_ids": [
+          "3509359",
+          "C12265",
+          "C12265-K2"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: iOS Device | iOS 11.1.2 | mobile safari 11.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3509359)",
+        "entity_ids": [
+          "3509359"
+        ]
+      },
+      {
+        "claim": "Customer C12265 validated transaction #3509359 ($125.08) as legitimate personal activity (authorized travel / known merchant).",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C12265"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 2 prior investigation records for account/card (CC-2277, CC-2447)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-2277",
+          "CC-2447"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2277",
+      "CC-2447"
+    ],
+    "summary": "Investigation of case HHG-020 cleared transaction #3509359 ($125.08) as legitimate customer activity. Customer outreach validated authorized personal transactions matching historical geographic travel or recurring billing patterns. Alert successfully closed with zero customer impact under policy rule R3.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-020"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 1,
+      "assumed_response": "Customer C12265 validated transaction #3509359 ($125.08) as legitimate personal activity (authorized travel / known merchant)."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Single risk score signal below certainty; verify before blocking"
+      }
+    ],
+    "final": [
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "R3: Customer confirmed transaction as legitimate"
+      }
+    ],
+    "what_changed": "Customer confirmation of personal travel/purchase lowered fraud probability to 0.08 and allowed alert closure under R3."
+  },
+  "sar": {
+    "file": false,
+    "reason": "Legitimate customer transaction confirmed; no fraud identified",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Customer confirmation settled the inquiry under policy R3; alert closed without customer friction.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

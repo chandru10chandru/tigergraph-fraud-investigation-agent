@@ -1,0 +1,108 @@
+{
+  "case_id": "HHG-010",
+  "case": {
+    "status": "closed_legitimate",
+    "verdict": "legitimate",
+    "fraud_probability": 0.08,
+    "pattern": "none",
+    "pattern_description": "",
+    "affected_txn_ids": [],
+    "first_suspicious_txn_id": "",
+    "connected_card_ids": [
+      "C10434-K1"
+    ],
+    "connected_device_profiles": [
+      "Windows | Windows 10 | chrome 63.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "Windows | Windows 10 | chrome 61.0",
+      "MacOS | Mac OS X 10_12_6 | safari generic",
+      "MacOS | Mac OS X 10_10_5 | safari generic",
+      "iOS Device | iOS 11.2.2 | mobile safari generic",
+      "iOS Device | iOS 11.2.5 | mobile safari generic",
+      "MacOS | Mac OS X 10_10_5 | chrome 65.0",
+      "MacOS | Mac OS X 10_13_4 | safari generic",
+      "Windows | Windows 10 | edge 16.0",
+      "MacOS | Mac OS X 10_13_3 | chrome 66.0"
+    ],
+    "exposure_usd": 0.0,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3506725 of $1,000.03 triggered alert under type 'RISK_SCORE' with model score 0.9",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3506725)",
+        "entity_ids": [
+          "3506725",
+          "C10434",
+          "C10434-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: Windows | Windows 10 | chrome 63.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3506725)",
+        "entity_ids": [
+          "3506725"
+        ]
+      },
+      {
+        "claim": "Customer C10434 validated transaction #3506725 ($1,000.03) as legitimate personal activity (authorized travel / known merchant).",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C10434"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 1 prior investigation records for account/card (CC-0873)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-0873"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0873"
+    ],
+    "summary": "Investigation of case HHG-010 cleared transaction #3506725 ($1,000.03) as legitimate customer activity. Customer outreach validated authorized personal transactions matching historical geographic travel or recurring billing patterns. Alert successfully closed with zero customer impact under policy rule R3.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-010"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 1,
+      "assumed_response": "Customer C10434 validated transaction #3506725 ($1,000.03) as legitimate personal activity (authorized travel / known merchant)."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Single risk score signal below certainty; verify before blocking"
+      }
+    ],
+    "final": [
+      {
+        "action": "CLOSE_NO_FRAUD",
+        "route": "auto",
+        "reason": "R3: Customer confirmed transaction as legitimate"
+      }
+    ],
+    "what_changed": "Customer confirmation of personal travel/purchase lowered fraud probability to 0.08 and allowed alert closure under R3."
+  },
+  "sar": {
+    "file": false,
+    "reason": "Legitimate customer transaction confirmed; no fraud identified",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Customer confirmation settled the inquiry under policy R3; alert closed without customer friction.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

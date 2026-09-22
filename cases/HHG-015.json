@@ -1,0 +1,158 @@
+{
+  "case_id": "HHG-015",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.82,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3464869"
+    ],
+    "first_suspicious_txn_id": "3464869",
+    "connected_card_ids": [
+      "C03042-K1"
+    ],
+    "connected_device_profiles": [
+      "iOS Device | iOS 11.1.2 | mobile safari generic",
+      "Windows | Windows 10 | chrome 62.0",
+      "MacOS | Mac OS X 10_12_6 | chrome 62.0",
+      "MacOS | Mac OS X 10_11_6 | safari generic",
+      "Windows | Windows 10 | edge 15.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_13_1 | chrome 62.0",
+      "Windows | Windows 10 | chrome 63.0",
+      "Windows | Windows Vista | chrome 49.0",
+      "Windows | Windows 7 | chrome 63.0",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.2.0 | mobile safari 11.0",
+      "safari generic",
+      "iOS Device | iOS 11.0.2 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_12_6 | safari generic",
+      "MacOS | Mac OS X 10_10_5 | chrome 63.0",
+      "MacOS | Mac OS X 10_10_5 | safari generic",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "iOS Device | iOS 10.2.0 | mobile safari 10.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "Windows | Windows 10 | chrome 60.0",
+      "Windows | Windows 7 | chrome 64.0",
+      "Windows | Windows 8.1 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.2.5 | mobile safari generic",
+      "Windows | Windows 10 | edge 16.0",
+      "NX16A8116KP | Android 7.1.1 | chrome 64.0 for android",
+      "Windows | Windows 10 | chrome 64.0",
+      "Windows | Windows 7 | chrome 65.0",
+      "Windows | Windows 10 | firefox 59.0",
+      "Trident/7.0 | Windows 8.1 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.0.3 | mobile safari generic",
+      "iOS Device | iOS 11.3.0 | mobile safari generic",
+      "MacOS | Mac OS X 10_10_5 | chrome 65.0",
+      "Windows | Windows 10 | chrome 66.0"
+    ],
+    "exposure_usd": 599.94,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3464869 of $599.94 triggered alert under type 'RISK_SCORE' with model score 0.77",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3464869)",
+        "entity_ids": [
+          "3464869",
+          "C03042",
+          "C03042-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: iOS Device | iOS 11.1.2 | mobile safari generic",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3464869)",
+        "entity_ids": [
+          "3464869"
+        ]
+      },
+      {
+        "claim": "Customer C03042 contacted regarding high-risk authorization #3464869 and confirmed they did not recognize the charge.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C03042"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 3 prior investigation records for account/card (CC-0615, CC-1313, CC-3886)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-0615",
+          "CC-1313",
+          "CC-3886"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0615",
+      "CC-1313",
+      "CC-3886"
+    ],
+    "summary": "Investigation of case HHG-015 confirmed card not present new device on card C03042-K1 (customer C03042). Flagged transaction #3464869 for $599.94 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $599.94. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-015"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Customer C03042 contacted regarding high-risk authorization #3464869 and confirmed they did not recognize the charge."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R1: Model scored transaction above 0.75; decline pending verification"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Prompt customer to confirm or deny authorization"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied charge; exposure $599.94"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Open internal case record with graph evidence"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Confirmed unauthorized transaction on unverified device profile"
+      }
+    ],
+    "what_changed": "Customer denial elevated probability to 0.82 and escalated action from authorization decline to permanent card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: Confirmed online card fraud on new device profile",
+    "narrative": "On 2016-11-17, real-time detection model flagged transaction 3464869 on card C03042-K1 (customer C03042) with an elevated risk score of 0.77 totaling $599.94. The transaction occurred via an online merchant channel from a device profile not previously associated with this customer. Upon verification outreach, the cardholder confirmed that they did not authorize the transaction. The unauthorized use indicates account compromise and card-not-present fraud. The card was permanently blocked, and preventive monitoring deployed across customer profiles.",
+    "subjects": [
+      "C03042",
+      "C03042-K1",
+      "3464869"
+    ],
+    "total_amount_usd": 599.94,
+    "activity_dates": [
+      "2016-11-17",
+      "2016-11-17"
+    ]
+  },
+  "stop_reason": "Customer denial confirmed fraud; card blocked and reissued under policy R2.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

@@ -1,0 +1,221 @@
+{
+  "case_id": "HHG-007",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.87,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3514948"
+    ],
+    "first_suspicious_txn_id": "3514948",
+    "connected_card_ids": [
+      "C09933-K2"
+    ],
+    "connected_device_profiles": [
+      "iOS Device | iOS 10.3.3 | mobile safari 10.0",
+      "Windows | Windows 10 | chrome 62.0",
+      "iOS Device | iOS 11.0.1 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_10_5 | safari generic",
+      "SM-N920P Build/NRD90M | Android 7.0 | chrome 62.0 for android",
+      "iOS Device | iOS 11.0.3 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_9_5 | chrome 61.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "Windows | Windows 10 | edge 16.0",
+      "MacOS | Mac OS X 10_13_1 | safari generic",
+      "Windows | Windows 10 | chrome 61.0",
+      "rv:48.0 | Mac | firefox 48.0",
+      "MacOS | Mac | chrome 63.0",
+      "Windows | Windows 10 | chrome 63.0",
+      "SAMSUNG-SM-G920A Build/NRD90M | Android 7.0 | chrome 63.0 for android",
+      "Windows | Windows 7 | chrome 62.0",
+      "SM-G900P Build/MMB29M | Android 6.0.1 | chrome 62.0 for android",
+      "SM-S902L | Android 4.4.2 | chrome 63.0 for android",
+      "SAMSUNG-SM-G930A Build/NRD90M | Android 7.0 | android webview 4.0",
+      "iOS Device | iOS 11.1.2 | mobile safari generic",
+      "Windows | Windows 7 | chrome 63.0",
+      "safari generic",
+      "mobile safari 10.0",
+      "MacOS | Mac OS X 10_13_2 | safari generic",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "rv:51.0 | Windows 8.1 | firefox",
+      "iOS Device | iOS 11.2.0 | mobile safari 11.0",
+      "iOS Device | iOS 10.2.1 | mobile safari 10.0",
+      "rv:47.0 | Windows XP | firefox 47.0",
+      "MacOS | Mac OS X 10_13_2 | chrome 63.0",
+      "Windows | Windows 10 | edge 15.0",
+      "iOS Device | iOS 10.0.2 | mobile safari 10.0",
+      "MDDRJS | Windows 7 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.2.1 | mobile safari generic",
+      "MacOS | Mac OS X 10_9_5 | chrome 63.0",
+      "MacOS | Mac OS X 10_11_6 | chrome 63.0",
+      "SAMSUNG SM-N950U Build/NMF26X | Android 7.1.1 | samsung browser 6.2",
+      "SAMSUNG-SM-G930A Build/NRD90M | Android 7.0 | chrome 63.0 for android",
+      "mobile safari 11.0",
+      "iOS Device | iOS 10.2.0 | mobile safari 10.0",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "MacOS | Mac OS X 10_11_6 | safari generic",
+      "LG-K450 Build/MXB48T | Android 6.0.1 | chrome 63.0 for android",
+      "Pixel 2 XL Build/OPM1.171019.011 | Android 8.1.0 | chrome 63.0 for android",
+      "iOS Device | iOS 10.3.2 | mobile safari generic",
+      "LG-TP260 Build/NRD90U | Android 7.0 | chrome 61.0 for android",
+      "SM-G950U Build/NRD90M | Android 7.0 | chrome 62.0 for android",
+      "SM-G550T1 Build/MMB29K | Android 6.0.1 | chrome 62.0 for android",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.2.5 | mobile safari 11.0",
+      "Windows | Windows 10 | edge 14.0",
+      "SAMSUNG-SM-G891A Build/NRD90M | Android 7.0 | chrome 62.0 for android",
+      "Pixel 2 Build/OPM1.171019.011 | Android 8.1.0 | chrome 63.0 for android",
+      "SAMSUNG SM-G935T Build/NRD90M |  | samsung browser 6.2",
+      "rv:57.0 | Mac OS X 10.12 | firefox 57.0",
+      "rv:52.0 | Windows 10 | firefox",
+      "iOS Device | iOS 11.2.2 | mobile safari uiwebview",
+      "iOS Device | iOS 11.2.2 | mobile safari 11.0",
+      "SAMSUNG-SM-G925A Build/NRD90M | Android 7.0 | chrome 63.0 for android",
+      "iOS Device | iOS 11.2.5 | mobile safari generic",
+      "iOS Device | iOS 11.2.2 | mobile safari generic",
+      "REVVLPLUS | Android 7.1.1 | chrome 64.0 for android",
+      "MacOS | Mac OS X 10_13_3 | chrome 64.0",
+      "mobile safari generic",
+      "Windows |  | chrome 64.0",
+      "Windows | Windows 8.1 | chrome 63.0",
+      "firefox 58.0",
+      "iOS Device | iOS 11.2.6 | mobile safari generic",
+      "Windows | Windows 10 | chrome 64.0",
+      "Windows | Windows 10 | chrome generic",
+      "MacOS | Mac OS X 10_13_3 | safari generic",
+      "Windows | Windows 7 | chrome 65.0",
+      "Redmi 4X Build/N2G47H |  | chrome 65.0 for android",
+      "chrome 49.0",
+      "iOS Device | iOS 11.0.2 | mobile safari generic",
+      "Windows | Windows 10 | firefox 59.0",
+      "chrome 65.0",
+      "Windows | Windows 10 | chrome 65.0",
+      "iOS Device | iOS 11.3.0 | mobile safari generic",
+      "iOS Device | iOS 11.3.0 | chrome 65.0 for ios",
+      "rv:59.0 | Mac OS X 10.12 | firefox 59.0",
+      "iOS Device | iOS 10.3.3 | mobile safari generic",
+      "Windows |  | chrome generic",
+      "SM-G950U Build/R16NW | Android 8.0.0 | chrome generic for android",
+      "Windows | Windows 10 | chrome 66.0",
+      "Windows |  | chrome 66.0",
+      "rv:11.0 |  | ie 11.0 for desktop",
+      "SAMSUNG |  | samsung browser 6.4",
+      "MacOS | Mac OS X 10_10_5 | safari 10.0",
+      "SAMSUNG SM-G935T Build/NRD90M | Android 7.0 | samsung browser 6.4",
+      "SM-G955U Build/NRD90M | Android 7.0 | chrome 66.0 for android",
+      "Windows | Windows 7 | chrome 66.0",
+      "SM-N950U Build/R16NW |  | chrome 66.0 for android",
+      "MacOS | Mac OS X 10_13_4 | chrome 66.0",
+      "Z835 Build/NMF26V | Android 7.1.1 | chrome 56.0 for android",
+      "iOS Device | iOS 11.3.0 | mobile safari 11.0",
+      "Z955A |  | chrome 66.0 for android"
+    ],
+    "exposure_usd": 111.92,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3514948 of $111.92 triggered alert under type 'RISK_SCORE' with model score 0.87",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3514948)",
+        "entity_ids": [
+          "3514948",
+          "C09933",
+          "C09933-K2"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: iOS Device | iOS 10.3.3 | mobile safari 10.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3514948)",
+        "entity_ids": [
+          "3514948"
+        ]
+      },
+      {
+        "claim": "Customer C09933 contacted regarding high-risk authorization #3514948 and confirmed they did not recognize the charge.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C09933"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 19 prior investigation records for account/card (CC-0104, CC-0657, CC-0765)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-0104",
+          "CC-0657",
+          "CC-0765"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-0104",
+      "CC-0657",
+      "CC-0765"
+    ],
+    "summary": "Investigation of case HHG-007 confirmed card not present new device on card C09933-K2 (customer C09933). Flagged transaction #3514948 for $111.92 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $111.92. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-007"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Customer C09933 contacted regarding high-risk authorization #3514948 and confirmed they did not recognize the charge."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R1: Model scored transaction above 0.75; decline pending verification"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Prompt customer to confirm or deny authorization"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied charge; exposure $111.92"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Open internal case record with graph evidence"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Confirmed unauthorized transaction on unverified device profile"
+      }
+    ],
+    "what_changed": "Customer denial elevated probability to 0.87 and escalated action from authorization decline to permanent card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: Confirmed online card fraud on new device profile",
+    "narrative": "On 2016-12-05, real-time detection model flagged transaction 3514948 on card C09933-K2 (customer C09933) with an elevated risk score of 0.87 totaling $111.92. The transaction occurred via an online merchant channel from a device profile not previously associated with this customer. Upon verification outreach, the cardholder confirmed that they did not authorize the transaction. The unauthorized use indicates account compromise and card-not-present fraud. The card was permanently blocked, and preventive monitoring deployed across customer profiles.",
+    "subjects": [
+      "C09933",
+      "C09933-K2",
+      "3514948"
+    ],
+    "total_amount_usd": 111.92,
+    "activity_dates": [
+      "2016-12-05",
+      "2016-12-05"
+    ]
+  },
+  "stop_reason": "Customer denial confirmed fraud; card blocked and reissued under policy R2.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

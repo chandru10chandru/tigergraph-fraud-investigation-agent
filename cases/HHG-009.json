@@ -1,0 +1,128 @@
+{
+  "case_id": "HHG-009",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3581141"
+    ],
+    "first_suspicious_txn_id": "3581141",
+    "connected_card_ids": [
+      "C08299-K1"
+    ],
+    "connected_device_profiles": [
+      "Windows | Windows 10 | edge 14.0",
+      "iOS Device | iOS 9.3.5 | mobile safari 9.0",
+      "rv:55.0 | Windows 7 | firefox 55.0",
+      "Windows | Windows 10 | chrome 63.0",
+      "Windows | Windows 7 | chrome 63.0",
+      "Android | chrome 63.0",
+      "Windows | Windows 7 | firefox 58.0",
+      "Windows | Windows 10 | chrome 64.0",
+      "Windows | Windows 10 | chrome generic",
+      "Windows | Windows 7 | chrome 64.0",
+      "Windows | Windows 7 | firefox 59.0",
+      "Windows | Windows 10 | edge 16.0",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "Windows | Windows 10 | firefox 59.0",
+      "Android | chrome 66.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "Windows | Windows 10 | firefox 60.0",
+      "Windows | Windows 10 | edge 17.0"
+    ],
+    "exposure_usd": 30.02,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3581141 of $30.02 triggered alert under type 'CUSTOMER_REPORT' with model score 0.5",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3581141)",
+        "entity_ids": [
+          "3581141",
+          "C08299",
+          "C08299-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: Windows | Windows 10 | edge 14.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3581141)",
+        "entity_ids": [
+          "3581141"
+        ]
+      },
+      {
+        "claim": "Cardholder C08299 contacted support confirming they did not make transaction #3581141 for $30.02 and retained possession of the card.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C08299"
+        ]
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Investigation of case HHG-009 confirmed card not present new device on card C08299-K1 (customer C08299). Flagged transaction #3581141 for $30.02 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $30.02. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-009"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Cardholder C08299 contacted support confirming they did not make transaction #3581141 for $30.02 and retained possession of the card."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Customer reported unrecognized activity on card"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Confirm unauthorized status and card possession"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied transaction; exposure $30.02"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Internal fraud case opened with evidence attached"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Regulatory filing for confirmed unauthorized use on online channel"
+      }
+    ],
+    "what_changed": "Customer confirmation of unrecognized charge elevated fraud probability to 0.88 and triggered immediate card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: confirmed unauthorized transaction reported by customer",
+    "narrative": "On 2016-12-28, card C08299-K1 belonging to customer C08299 was utilized for an unauthorized online purchase of $30.02 under transaction reference 3581141. The cardholder contacted the bank disputing the transaction and confirmed they remained in possession of the physical card. The transaction originated from an unrecognized online device connection. The unauthorized authorization is consistent with card-not-present fraud resulting from card credential compromise. Total exposure is $30.02. The card has been blocked and submitted for reissue, and related account monitoring initiated.",
+    "subjects": [
+      "C08299",
+      "C08299-K1",
+      "3581141"
+    ],
+    "total_amount_usd": 30.02,
+    "activity_dates": [
+      "2016-12-28",
+      "2016-12-28"
+    ]
+  },
+  "stop_reason": "Customer denial settled the verdict; card blocked and exposure contained.",
+  "tool_calls": 9,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

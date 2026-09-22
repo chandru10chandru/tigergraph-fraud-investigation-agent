@@ -1,0 +1,157 @@
+{
+  "case_id": "HHG-019",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.9,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3503878"
+    ],
+    "first_suspicious_txn_id": "3503878",
+    "connected_card_ids": [
+      "C07987-K2"
+    ],
+    "connected_device_profiles": [
+      "Windows | Windows 10 | chrome 62.0",
+      "iOS Device | iOS 11.1.0 | mobile safari 11.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "Windows | Windows 10 | firefox 57.0",
+      "Windows | Windows 10 | edge 15.0",
+      "MDDRJS | Windows 7 | ie 11.0 for desktop",
+      "iOS Device | iOS 9.3.5 | mobile safari 9.0",
+      "Windows | Windows 10 | edge 16.0",
+      "Trident/7.0 | Windows 8.1 | ie 11.0 for desktop",
+      "MacOS | Mac OS X 10_11_6 | safari generic",
+      "iOS Device | iOS 10.3.3 | mobile safari 10.0",
+      "LG-H871 | Android 7.0 | firefox",
+      "SAMSUNG SM-G950U Build/NRD90M | Android 7.0 | samsung browser 6.2",
+      "Windows | Windows 7 | chrome 62.0",
+      "MacOS | Mac OS X 10_11_4 | safari generic",
+      "iOS Device | iOS 11.1.1 | mobile safari 11.0",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_13_1 | safari generic",
+      "Linux | chrome 62.0",
+      "Windows | Windows 7 | chrome 63.0",
+      "iOS Device | iOS 10.3.1 | mobile safari 10.0",
+      "rv:57.0 | Mac OS X 10.10 | firefox 57.0",
+      "rv:11.0 | Windows 7 | ie 11.0 for desktop",
+      "Windows | Windows 10 | firefox generic",
+      "MacOS | Mac OS X 10_12_6 | chrome 64.0",
+      "Windows | Windows 7",
+      "rv:11.0 |  | ie 11.0 for desktop",
+      "Windows | Windows 10 | chrome 65.0",
+      "MacOS | Mac OS X 10_12_6 | safari generic",
+      "Windows | other | chrome 61.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "rv:60.0 | Mac OS X 10.11 | firefox 60.0"
+    ],
+    "exposure_usd": 99.92,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3503878 of $99.92 triggered alert under type 'RISK_SCORE' with model score 0.9",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3503878)",
+        "entity_ids": [
+          "3503878",
+          "C07987",
+          "C07987-K2"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: Windows | Windows 10 | chrome 62.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3503878)",
+        "entity_ids": [
+          "3503878"
+        ]
+      },
+      {
+        "claim": "Customer C07987 contacted regarding high-risk authorization #3503878 and confirmed they did not recognize the charge.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C07987"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 4 prior investigation records for account/card (CC-2011, CC-2087, CC-2860)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-2011",
+          "CC-2087",
+          "CC-2860"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-2011",
+      "CC-2087",
+      "CC-2860"
+    ],
+    "summary": "Investigation of case HHG-019 confirmed card not present new device on card C07987-K2 (customer C07987). Flagged transaction #3503878 for $99.92 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $99.92. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-019"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Customer C07987 contacted regarding high-risk authorization #3503878 and confirmed they did not recognize the charge."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "DECLINE_TRANSACTION",
+        "route": "L1",
+        "reason": "R1: Model scored transaction above 0.75; decline pending verification"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Prompt customer to confirm or deny authorization"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied charge; exposure $99.92"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Open internal case record with graph evidence"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Confirmed unauthorized transaction on unverified device profile"
+      }
+    ],
+    "what_changed": "Customer denial elevated probability to 0.90 and escalated action from authorization decline to permanent card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: Confirmed online card fraud on new device profile",
+    "narrative": "On 2016-12-01, real-time detection model flagged transaction 3503878 on card C07987-K2 (customer C07987) with an elevated risk score of 0.90 totaling $99.92. The transaction occurred via an online merchant channel from a device profile not previously associated with this customer. Upon verification outreach, the cardholder confirmed that they did not authorize the transaction. The unauthorized use indicates account compromise and card-not-present fraud. The card was permanently blocked, and preventive monitoring deployed across customer profiles.",
+    "subjects": [
+      "C07987",
+      "C07987-K2",
+      "3503878"
+    ],
+    "total_amount_usd": 99.92,
+    "activity_dates": [
+      "2016-12-01",
+      "2016-12-01"
+    ]
+  },
+  "stop_reason": "Customer denial confirmed fraud; card blocked and reissued under policy R2.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

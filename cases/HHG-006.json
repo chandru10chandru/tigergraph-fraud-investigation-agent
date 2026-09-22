@@ -1,0 +1,112 @@
+{
+  "case_id": "HHG-006",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3476682"
+    ],
+    "first_suspicious_txn_id": "3476682",
+    "connected_card_ids": [
+      "C07297-K1"
+    ],
+    "connected_device_profiles": [
+      "Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0"
+    ],
+    "exposure_usd": 482.12,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3476682 of $482.12 triggered alert under type 'CUSTOMER_REPORT' with model score 0.5",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3476682)",
+        "entity_ids": [
+          "3476682",
+          "C07297",
+          "C07297-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: Trident/7.0 | Windows 7 | ie 11.0 for desktop",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3476682)",
+        "entity_ids": [
+          "3476682"
+        ]
+      },
+      {
+        "claim": "Cardholder C07297 contacted support confirming they did not make transaction #3476682 for $482.12 and retained possession of the card.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C07297"
+        ]
+      }
+    ],
+    "similar_prior_cases": [],
+    "summary": "Investigation of case HHG-006 confirmed card not present new device on card C07297-K1 (customer C07297). Flagged transaction #3476682 for $482.12 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $482.12. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-006"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Cardholder C07297 contacted support confirming they did not make transaction #3476682 for $482.12 and retained possession of the card."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Customer reported unrecognized activity on card"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Confirm unauthorized status and card possession"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied transaction; exposure $482.12"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Internal fraud case opened with evidence attached"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Regulatory filing for confirmed unauthorized use on online channel"
+      }
+    ],
+    "what_changed": "Customer confirmation of unrecognized charge elevated fraud probability to 0.88 and triggered immediate card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: confirmed unauthorized transaction reported by customer",
+    "narrative": "On 2016-11-22, card C07297-K1 belonging to customer C07297 was utilized for an unauthorized online purchase of $482.12 under transaction reference 3476682. The cardholder contacted the bank disputing the transaction and confirmed they remained in possession of the physical card. The transaction originated from an unrecognized online device connection. The unauthorized authorization is consistent with card-not-present fraud resulting from card credential compromise. Total exposure is $482.12. The card has been blocked and submitted for reissue, and related account monitoring initiated.",
+    "subjects": [
+      "C07297",
+      "C07297-K1",
+      "3476682"
+    ],
+    "total_amount_usd": 482.12,
+    "activity_dates": [
+      "2016-11-22",
+      "2016-11-22"
+    ]
+  },
+  "stop_reason": "Customer denial settled the verdict; card blocked and exposure contained.",
+  "tool_calls": 9,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

@@ -1,0 +1,114 @@
+{
+  "case_id": "HHG-001",
+  "case": {
+    "status": "open",
+    "verdict": "uncertain",
+    "fraud_probability": 0.45,
+    "pattern": "undocumented",
+    "pattern_description": "Single elevated model risk score (0.61) on transaction #3514030 without prior historical abuse.",
+    "affected_txn_ids": [
+      "3514030"
+    ],
+    "first_suspicious_txn_id": "3514030",
+    "connected_card_ids": [
+      "C12382-K1"
+    ],
+    "connected_device_profiles": [
+      "iOS Device | iOS 11.1.0 | mobile safari 11.0",
+      "iOS Device | iOS 11.2.6 | mobile safari generic"
+    ],
+    "exposure_usd": 77.07,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3514030 of $77.07 triggered alert under type 'RISK_SCORE' with model score 0.61",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3514030)",
+        "entity_ids": [
+          "3514030",
+          "C12382",
+          "C12382-K1"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: iOS Device | iOS 11.1.0 | mobile safari 11.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3514030)",
+        "entity_ids": [
+          "3514030"
+        ]
+      },
+      {
+        "claim": "Step-up two-factor SMS passcode dispatched; awaiting customer completion.",
+        "source": "analyst",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C12382"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 4 prior investigation records for account/card (CC-1066, CC-1673, CC-2964)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-1066",
+          "CC-1673",
+          "CC-2964"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-1066",
+      "CC-1673",
+      "CC-2964"
+    ],
+    "summary": "Investigation of case HHG-001 remains open pending step-up authentication response. Transaction #3514030 ($77.07) exhibits borderline risk metrics without confirmed corroborating compromise signals. Card maintained under monitoring under policy rule R1.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-001"
+  },
+  "evidence_requests": [
+    {
+      "type": "step_up_auth",
+      "asked_after_step": 2,
+      "assumed_response": "Step-up two-factor SMS passcode dispatched; awaiting customer completion."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: Borderline risk score; step-up verification required"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: Monitor card pending customer authentication"
+      }
+    ],
+    "final": [
+      {
+        "action": "STEP_UP_AUTH",
+        "route": "auto",
+        "reason": "R1: Awaiting 2FA resolution"
+      },
+      {
+        "action": "MONITOR_CARD",
+        "route": "auto",
+        "reason": "R4: Card maintained under 72h observation"
+      }
+    ],
+    "what_changed": "Step-up authentication requested; card placed under monitoring pending reply."
+  },
+  "sar": {
+    "file": false,
+    "reason": "Uncertain single-signal alert pending step-up authentication response",
+    "narrative": "",
+    "subjects": [],
+    "total_amount_usd": 0.0,
+    "activity_dates": []
+  },
+  "stop_reason": "Investigation paused pending step-up authentication response under policy R1.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}

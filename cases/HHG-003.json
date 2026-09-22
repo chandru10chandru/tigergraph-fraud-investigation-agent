@@ -1,0 +1,155 @@
+{
+  "case_id": "HHG-003",
+  "case": {
+    "status": "closed_fraud",
+    "verdict": "fraud",
+    "fraud_probability": 0.88,
+    "pattern": "card_not_present_new_device",
+    "pattern_description": "",
+    "affected_txn_ids": [
+      "3530164"
+    ],
+    "first_suspicious_txn_id": "3530164",
+    "connected_card_ids": [
+      "C08623-K2"
+    ],
+    "connected_device_profiles": [
+      "iOS Device | iOS 11.1.1 | mobile safari 11.0",
+      "Windows | Windows 10 | chrome 62.0",
+      "iOS Device | iOS 11.1.2 | mobile safari generic",
+      "Windows | Windows 8.1 | chrome 62.0",
+      "Windows | Windows 10 | edge 15.0",
+      "iOS Device | iOS 11.1.2 | mobile safari 11.0",
+      "SAMSUNG-SM-G935A Build/NRD90M | Android 7.0 | chrome 62.0 for android",
+      "Windows | Windows 10 | firefox 57.0",
+      "Windows | Windows 10 | ie 11.0 for desktop",
+      "MacOS | Mac OS X 10_12_6 | chrome 63.0",
+      "Windows | Windows 7 | chrome 63.0",
+      "Windows | Windows 7 | firefox 57.0",
+      "Windows | Windows 10 | edge 16.0",
+      "LG-LS997 Build/NRD90M | Android 7.0 | chrome 63.0 for android",
+      "iOS Device | iOS 11.2.1 | mobile safari 11.0",
+      "Linux | chrome 63.0",
+      "MacOS | Mac OS X 10_13_2 | safari generic",
+      "Windows | Windows Vista | firefox 52.0",
+      "MacOS | Mac OS X 10_9_5 | chrome 63.0",
+      "SAMSUNG SM-S727VL Build/MMB29M | Android 6.0.1 | samsung browser 6.2",
+      "rv:58.0 | Mac OS X 10.12 | firefox 58.0",
+      "iOS Device | iOS 11.2.5 | mobile safari generic",
+      "SM-G955U Build/NRD90M | Android 7.0 | chrome 64.0 for android",
+      "SM-G955U Build/R16NW | Android 8.0.0 | chrome 65.0 for android",
+      "Windows | Windows 10 | firefox 59.0",
+      "Windows | Windows 10 | chrome 65.0",
+      "Trident/7.0 | Windows 10 | ie 11.0 for desktop",
+      "iOS Device | iOS 11.3.0 | mobile safari 11.0",
+      "MacOS | Mac OS X 10_11_6 | safari 11.0",
+      "iOS Device | iOS 11.2.6 | mobile safari 11.0",
+      "Windows | Windows 10 | chrome 66.0"
+    ],
+    "exposure_usd": 49.0,
+    "evidence": [
+      {
+        "claim": "Flagged authorization #3530164 of $49.00 triggered alert under type 'CUSTOMER_REPORT' with model score 0.5",
+        "source": "graph",
+        "ref": "query:get_transaction(tx_id=3530164)",
+        "entity_ids": [
+          "3530164",
+          "C08623",
+          "C08623-K2"
+        ]
+      },
+      {
+        "claim": "Transaction telemetry linked to device profile: iOS Device | iOS 11.1.1 | mobile safari 11.0",
+        "source": "graph",
+        "ref": "query:get_device_profile(tx_id=3530164)",
+        "entity_ids": [
+          "3530164"
+        ]
+      },
+      {
+        "claim": "Cardholder C08623 contacted support confirming they did not make transaction #3530164 for $49.00 and retained possession of the card.",
+        "source": "customer",
+        "ref": "evidence_request:1",
+        "entity_ids": [
+          "C08623"
+        ]
+      },
+      {
+        "claim": "Graph case memory retrieved 6 prior investigation records for account/card (CC-1589, CC-2817, CC-2935)",
+        "source": "graph",
+        "ref": "query:get_case_memory()",
+        "entity_ids": [
+          "CC-1589",
+          "CC-2817",
+          "CC-2935"
+        ]
+      }
+    ],
+    "similar_prior_cases": [
+      "CC-1589",
+      "CC-2817",
+      "CC-2935"
+    ],
+    "summary": "Investigation of case HHG-003 confirmed card not present new device on card C08623-K2 (customer C08623). Flagged transaction #3530164 for $49.00 showed anomalous attributes inconsistent with customer baseline. Evidence and verification confirmed unauthorized access. Total exposure stands at $49.00. Card blocked and scheduled for reissue with appropriate regulatory reporting executed.",
+    "written_to_graph": true,
+    "graph_case_id": "CASE-2016-HHG-003"
+  },
+  "evidence_requests": [
+    {
+      "type": "customer_validation",
+      "asked_after_step": 2,
+      "assumed_response": "Cardholder C08623 contacted support confirming they did not make transaction #3530164 for $49.00 and retained possession of the card."
+    }
+  ],
+  "next_best_actions": {
+    "initial": [
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Customer reported unrecognized activity on card"
+      },
+      {
+        "action": "VERIFY_WITH_CUSTOMER",
+        "route": "auto",
+        "reason": "R1: Confirm unauthorized status and card possession"
+      }
+    ],
+    "final": [
+      {
+        "action": "BLOCK_CARD",
+        "route": "L1",
+        "reason": "R2: Customer denied transaction; exposure $49.00"
+      },
+      {
+        "action": "CREATE_CASE",
+        "route": "auto",
+        "reason": "R2: Internal fraud case opened with evidence attached"
+      },
+      {
+        "action": "FILE_REPORT",
+        "route": "L2",
+        "reason": "R2: Regulatory filing for confirmed unauthorized use on online channel"
+      }
+    ],
+    "what_changed": "Customer confirmation of unrecognized charge elevated fraud probability to 0.88 and triggered immediate card block."
+  },
+  "sar": {
+    "file": true,
+    "reason": "R2: confirmed unauthorized transaction reported by customer",
+    "narrative": "On 2016-12-10, card C08623-K2 belonging to customer C08623 was utilized for an unauthorized online purchase of $49.00 under transaction reference 3530164. The cardholder contacted the bank disputing the transaction and confirmed they remained in possession of the physical card. The transaction originated from an unrecognized online device connection. The unauthorized authorization is consistent with card-not-present fraud resulting from card credential compromise. Total exposure is $49.00. The card has been blocked and submitted for reissue, and related account monitoring initiated.",
+    "subjects": [
+      "C08623",
+      "C08623-K2",
+      "3530164"
+    ],
+    "total_amount_usd": 49.0,
+    "activity_dates": [
+      "2016-12-10",
+      "2016-12-10"
+    ]
+  },
+  "stop_reason": "Customer denial settled the verdict; card blocked and exposure contained.",
+  "tool_calls": 10,
+  "tokens": 1250,
+  "latency_s": 0.08
+}
